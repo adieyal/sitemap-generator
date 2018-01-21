@@ -6,8 +6,6 @@ if sys.version_info.major == 2:
 else:
     from urllib import parse as urlparse 
 import requests
-from requests.packages.urllib3.util.retry import Retry
-from requests.adapters import HTTPAdapter
 
 from lxml import html
 import re
@@ -96,7 +94,6 @@ class Crawler:
         else:
             url = self.urls.pop()
             try:
-                sys.stdout.write(url + '\n')
                 response = session.get(url)
                 # if status code is not 404, then add url in seld.errors dictionary
                 if response.status_code != 200:
